@@ -62,4 +62,12 @@ public class EvenNumbersIteratorTest {
         assertThat(it.hasNext(), is(false));
 
     }
+
+    @Test
+
+    public void then118() {
+        it = new EvenNumbersIterator(new int[] {1, 1, 8});
+        assertThat(it.hasNext(), is(true));
+
+    }
 }
