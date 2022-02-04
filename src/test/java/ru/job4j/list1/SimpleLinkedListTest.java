@@ -1,4 +1,4 @@
-package ru.job4j.linkedList;
+package ru.job4j.list1;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class SimpleLinkedListTest {
         List<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
-        assertThat(it. next(), Is.is(1));
+        assertThat(it.next(), Is.is(1));
     }
 
     @Test
