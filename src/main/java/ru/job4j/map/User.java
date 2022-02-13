@@ -41,8 +41,6 @@ public class User {
         map.put(daughter, new Object());
         map.put(daughter1, new Object());
         System.out.println(map);
-        System.out.println(daughter.hashCode());
-        System.out.println(daughter1.hashCode());
     }
 }
 
