@@ -14,17 +14,18 @@ public class User {
         this.birthday = birthday;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
+        } else if (o == null || getClass() != o.getClass()) {
             return false;
+        } else {
+            User user = (User) o;
+            return children == user.children
+                    && Objects.equals(name, user.name)
+                    && Objects.equals(birthday, user.birthday);
         }
-        User user = (User) o;
-        return children == user.children
-                && Objects.equals(name, user.name)
-                && Objects.equals(birthday, user.birthday);
     }
 
     @Override
@@ -34,13 +35,14 @@ public class User {
 
     public static void main(String[] args) {
         Calendar dataV = new GregorianCalendar(2013, 12, 13);
-        Calendar dataS = new GregorianCalendar(2020, 07, 07);
         User daughter = new User("Vasilina", 1, dataV);
-        User son = new User("Stepan", 2, dataS);
+        User daughter1 = new User("Vasilina", 1, dataV);
         Map<User, Object> map = new HashMap<>();
         map.put(daughter, new Object());
-        map.put(son, new Object());
+        map.put(daughter1, new Object());
         System.out.println(map);
+        System.out.println(daughter.hashCode());
+        System.out.println(daughter1.hashCode());
     }
 }
 
