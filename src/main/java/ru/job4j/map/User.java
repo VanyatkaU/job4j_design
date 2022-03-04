@@ -32,15 +32,4 @@ public class User {
     public int hashCode() {
         return Objects.hash(name, children, birthday);
     }
-
-    public static void main(String[] args) {
-        Calendar dataV = new GregorianCalendar(2013, 12, 13);
-        User daughter = new User("Vasilina", 1, dataV);
-        User daughter1 = new User("Vasilina", 1, dataV);
-        Map<User, Object> map = new HashMap<>();
-        map.put(daughter, new Object());
-        map.put(daughter1, new Object());
-        System.out.println(map);
-    }
 }
-
