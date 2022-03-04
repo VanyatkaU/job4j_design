@@ -12,10 +12,9 @@ import static org.junit.Assert.*;
 
 public class SimpleMapTest {
     @Test
-    public void thenPut() {
+    public void whenPut() {
         Map<String, Integer> map = new SimpleMap<>();
         assertTrue(map.put("Test", 1));
-        assertTrue(map.put("Test1", 2));
     }
 
     @Test
@@ -23,7 +22,7 @@ public class SimpleMapTest {
         Map<String, Integer> map = new SimpleMap<>();
         map.put("Test", 1);
         map.put("Тест", 0);
-        assertTrue(map.put("Test", 0));
+        assertFalse(map.put("Test", 0));
     }
 
     @Test
