@@ -39,16 +39,14 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        if (count >= capacity * LOAD_FACTOR) {
-            capacity *= 2;
-            var newSize = new MapEntry[capacity];
-            for (MapEntry<K, V> key : table) {
-                if (key != null) {
-                    newSize[indexFor(hash(key.hashCode()))] = key;
-                }
+        capacity *= 2;
+        var newSize = new MapEntry[capacity];
+        for (MapEntry<K, V> key : table) {
+            if (key != null) {
+                newSize[indexFor(key.key.hashCode())] = key;
             }
-            table = newSize;
         }
+        table = newSize;
     }
 
     @Override

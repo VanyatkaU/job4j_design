@@ -38,7 +38,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("Test", 1);
         map.put("Тест", 2);
-        assertEquals(null, map.get("Тест1"));
+        assertNull(map.get("Тест1"));
     }
 
     @Test
