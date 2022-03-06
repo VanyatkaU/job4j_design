@@ -43,7 +43,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         var newSize = new MapEntry[capacity];
         for (MapEntry<K, V> key : table) {
             if (key != null) {
-                newSize[indexFor(key.key.hashCode())] = key;
+                newSize[indexFor(hash(key.key.hashCode()))] = key;
             }
         }
         table = newSize;
