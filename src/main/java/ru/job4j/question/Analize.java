@@ -8,8 +8,11 @@ public class Analize {
     public static Info diff(Set<User> previous, Set<User> current) {
         int deleted = 0;
         int changed = 0;
-        Map<Integer, String> userMap = current.stream()
-                .collect(Collectors.toMap(User::getId, User::getName));
+        int added;
+        Map<Integer, String> userMap = new HashMap<>();
+        for (User user : current) {
+            userMap.put(user.getId(), user.getName());
+        }
         for (User user : previous) {
             if (userMap.get(user.getId()) == null) {
                 deleted++;
@@ -21,7 +24,7 @@ public class Analize {
                 changed++;
             }
         }
-        int added = current.size() - previous.size() + deleted;
+        added = current.size() - previous.size() + deleted;
         return new Info(added, changed, deleted);
     }
 }
