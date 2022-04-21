@@ -18,8 +18,7 @@ public class Config {
     }
 
     public void load() {
-        try (BufferedReader read = new BufferedReader
-                (new FileReader(this.path))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
                     .forEach(s -> {
                         if (s.equals(" ") || s.startsWith("#") || s.contains("=/")) {

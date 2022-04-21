@@ -43,5 +43,4 @@ public class ConfigTest {
         assertThat(config.value("name"), is("Ivan"));
         assertThat(config.value("surname"), is("Karelkin"));
     }
-
 }
