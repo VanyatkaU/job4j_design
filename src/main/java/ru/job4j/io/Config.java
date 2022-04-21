@@ -35,7 +35,7 @@ public class Config {
     public String value(String key) {
         return values.get(key);
         /**
-         * throw new UnsupportedOperationException("Don't impl this method yet!");
+         * @throws throw new UnsupportedOperationException("Don't impl this method yet!");
          * */
     }
 
