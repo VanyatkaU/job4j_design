@@ -34,9 +34,6 @@ public class Config {
 
     public String value(String key) {
         return values.get(key);
-        /**
-         * @throws throw new UnsupportedOperationException("Don't impl this method yet!");
-         * */
     }
 
     @Override
