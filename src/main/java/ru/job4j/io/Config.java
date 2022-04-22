@@ -22,11 +22,11 @@ public class Config {
                     .filter(s -> !(s.isEmpty() || s.startsWith("#")))
                     .forEach(s -> {
                         if (s.contains("= ") || s.contains(" =") || !s.contains("=")) {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException("Нарушение шаблона ключ=значение, проверьте соответствие шаблону");
                         }
                         String[] mapValue = s.split("=", 2);
                         if (mapValue[0].isEmpty() || mapValue[1].isEmpty()) {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException("Нарушение шаблона ключ=значение, проверьте соответствие шаблону");
                         }
                         values.put(mapValue[0], mapValue[1]);
 
