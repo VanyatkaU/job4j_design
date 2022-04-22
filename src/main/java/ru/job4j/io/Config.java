@@ -22,14 +22,15 @@ public class Config {
                     .filter(s -> !(s.isEmpty() || s.startsWith("#")))
                     .forEach(s -> {
                         if (s.contains("= ") || s.contains(" =") || !s.contains("=")) {
-                                throw new IllegalArgumentException();
-                            }
-                            String[] mapValue = s.split("=", 2);
-                            values.put(mapValue[0], mapValue[1]);
-                            if (mapValue[0].isEmpty() || mapValue[1].isEmpty()) {
-                                throw new IllegalArgumentException();
-                            }
-                        });
+                            throw new IllegalArgumentException();
+                        }
+                        String[] mapValue = s.split("=", 2);
+                        if (mapValue[0].isEmpty() || mapValue[1].isEmpty()) {
+                            throw new IllegalArgumentException();
+                        }
+                        values.put(mapValue[0], mapValue[1]);
+
+                    });
         } catch (IOException e) {
             e.printStackTrace();
         }
