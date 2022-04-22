@@ -17,7 +17,7 @@ public class ConfigTest {
         assertThat(config.value("surname"), is(Matchers.nullValue()));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void whenPairWithComment() {
         String path = "./data/pair_with_comment.properties";
         Config config = new Config(path);
@@ -26,7 +26,7 @@ public class ConfigTest {
         assertThat(config.value("surname"), is("Karelkin"));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void whenPairWithComments() {
         String path = "./data/pair_with_comments.properties";
         Config config = new Config(path);

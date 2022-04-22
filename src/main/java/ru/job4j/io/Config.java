@@ -19,8 +19,9 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
+                    .filter(s -> !(s.isEmpty() || s.startsWith("#")))
                     .forEach(s -> {
-                        if (s.equals(" ") || s.startsWith("#") || s.contains("=/")) {
+                        if (s.contains(" =") || s.contains("= ")) {
                             throw new IllegalArgumentException();
                         }
                         String[] mapValue = s.split("=");
@@ -33,9 +34,6 @@ public class Config {
 
     public String value(String key) {
         return values.get(key);
-        /**
-         * @throws throw new UnsupportedOperationException("Don't impl this method yet!");
-         * */
     }
 
     @Override
