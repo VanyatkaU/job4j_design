@@ -21,7 +21,7 @@ public class Config {
             read.lines()
                     .filter(s -> !(s.isEmpty() || s.startsWith("#")))
                     .forEach(s -> {
-                        if (s.contains(" =") || s.contains("= ") || !s.contains("=")) {
+                        if (s.contains("= ") || s.contains(" =") || !s.contains("=")) {
                             throw new IllegalArgumentException();
                         }
                         String[] mapValue = s.split("=", 2);

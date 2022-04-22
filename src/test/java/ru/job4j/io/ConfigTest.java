@@ -36,8 +36,29 @@ public class ConfigTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void whenPairWithViolation() {
-        String path = "./data/pair_violation.properties";
+    public void whenPairWithViolationKey() {
+        String path = "./data/pair_violation_key.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenPairWithViolationValue() {
+        String path = "./data/pair_violation_value.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenPairWithViolationWithoutEquals() {
+        String path = "./data/pair_violation_without_equals.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenPairWithViolationWithoutValues() {
+        String path = "./data/pair_violation_without_values.properties";
         Config config = new Config(path);
         config.load();
     }
