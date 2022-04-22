@@ -13,7 +13,7 @@ public class ConfigTest {
         String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"), is("Ivan"));
+        assertThat(config.value("name"), is("Ivan=1"));
         assertThat(config.value("surname"), is(Matchers.nullValue()));
     }
 
@@ -40,7 +40,5 @@ public class ConfigTest {
         String path = "./data/pair_violation.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"), is("Ivan"));
-        assertThat(config.value("surname"), is("Karelkin"));
     }
 }
