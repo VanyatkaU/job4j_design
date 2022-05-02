@@ -18,14 +18,12 @@ public class AnalizyTest {
         File source = folder.newFile("server.log");
         File target = folder.newFile("unavailable.csv");
         try (PrintWriter out = new PrintWriter(source)) {
-            out.println("""
-                    200 10:56:01
-                    200 10:57:01
-                    400 10:58:01
-                    200 10:59:01
-                    500 11:01:02
-                    200 11:02:02
-                    """);
+            out.println("200 10:56:01");
+            out.println("200 10:57:01");
+            out.println("400 10:58:01");
+            out.println("200 10:59:01");
+            out.println("500 11:01:02");
+            out.println("200 11:02:02");
         }
         Analizy analizy = new Analizy();
         analizy.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
