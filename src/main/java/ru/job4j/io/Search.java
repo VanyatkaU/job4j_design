@@ -29,7 +29,7 @@ public class Search {
             throw new IllegalArgumentException("The root folder is empty or there are not enough options. "
                                                + "Use template: root folder, .txt");
         }
-        if (!new File(args[1]).toString().startsWith(".")) {
+        if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException("Invalid second argument. Specify - .txt");
         }
         if (!new File(args[0]).isDirectory()) {
