@@ -25,12 +25,12 @@ public class Search {
     }
 
     private static boolean isValid(String[] args) {
-        if (args.length < 2) {
+        if (args.length != 2) {
             throw new IllegalArgumentException("The root folder is empty or there are not enough options. "
                                                + "Use template: root folder, .txt");
         }
-        if (args.length > 2) {
-            throw new IllegalArgumentException("More than two arguments. Specify the number of arguments - 2");
+        if (!new File(args[1]).toString().startsWith(".")) {
+            throw new IllegalArgumentException("Invalid second argument. Specify - .txt");
         }
         if (!new File(args[0]).isDirectory()) {
             throw new IllegalArgumentException("Not directory.");
