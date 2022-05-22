@@ -15,22 +15,26 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("The args is empty");
-        }
         for (String arg : args) {
             String[] map = arg.split("=", 2);
-            if (!map[0].startsWith("-")) {
-                throw new IllegalArgumentException("The key format does not match the template");
-            }
-            if (map[1].isEmpty()) {
-                throw new IllegalArgumentException("The value is missing");
-            }
+            isValid(map);
             values.put(map[0].substring(1), map[1]);
         }
     }
 
+    private static void isValid(String[] map) {
+        if (!map[0].startsWith("-") || map[0].length() < 2) {
+            throw new IllegalArgumentException("The key format does not match the template");
+        }
+        if (map.length != 2 || map[1].isEmpty()) {
+            throw new IllegalArgumentException("The value or key are missing");
+        }
+    }
+
     public static ArgsName of(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("The args is empty");
+        }
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;

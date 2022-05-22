@@ -35,4 +35,34 @@ public class ArgsNameTest {
     public void whenWrongSomeArgument() {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenArgsIsEmpty() {
+        ArgsName jvm = ArgsName.of(new String[] {});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTheSymbolIsMissing() {
+        ArgsName jvm = ArgsName.of(new String[] {"encoding=UTF-8"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTheValueIsMissing() {
+        ArgsName jvm = ArgsName.of(new String[] {"-Xmx="});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTheKeyIsMissing() {
+        ArgsName jvm = ArgsName.of(new String[] {"-=512"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTheEqualIsMissing() {
+        ArgsName jvm = ArgsName.of(new String[] {"-encoding:UTF-8"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenKeyAndValueAreMissing() {
+        ArgsName jvm = ArgsName.of(new String[] {"-="});
+    }
 }
