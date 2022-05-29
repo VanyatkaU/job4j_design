@@ -16,7 +16,7 @@ public class Zip {
                     zip.write(out.readAllBytes());
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -58,11 +58,12 @@ public class Zip {
         List<Path> files = null;
         try {
             files = Search.search(start, path -> !path.toFile().getName()
-                    .endsWith("." + argsName.get("e")));
+                    .endsWith(argsName.get("e")));
         } catch (IOException e) {
             e.printStackTrace();
         }
         File toArshive = new File(argsName.get("o"));
+        assert files != null;
         packFiles(files, toArshive);
 
         Zip zip = new Zip();
