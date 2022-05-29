@@ -18,7 +18,7 @@ public class Search {
         }
     }
 
-    private static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
+    public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
         SearchFiles searcher = new SearchFiles(condition);
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
@@ -30,7 +30,7 @@ public class Search {
                                                + "Use template: root folder, .txt");
         }
         if (!args[1].startsWith(".")) {
-            throw new IllegalArgumentException("Invalid second argument. Specify - .txt");
+            throw new IllegalArgumentException("Invalid second argument. Specify - .zip");
         }
         if (!new File(args[0]).isDirectory()) {
             throw new IllegalArgumentException("Not directory.");
