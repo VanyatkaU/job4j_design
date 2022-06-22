@@ -5,25 +5,26 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class CSVReader {
+
     public static void handle(ArgsName argsName) {
         List<Integer> columns = new ArrayList<>();
         StringJoiner result = new StringJoiner(argsName.get("delimiter"));
         try (BufferedReader br = new BufferedReader(new FileReader(
                 argsName.get("path")))) {
-                var scanner = new Scanner(br)
-                        .useDelimiter(argsName.get("delimiter"));
-                var line = scanner.nextLine().split(argsName.get("delimiter"));
-                var filterLines = argsName.get("filter").split(",");
-                for (String s : filterLines) {
-                    for (int i = 0; i < line.length; i++) {
-                        if (line[i].equals(s)) {
-                            columns.add(i);
-                            result.add(line[i]);
-                        }
+            var scanner = new Scanner(br)
+                    .useDelimiter(argsName.get("delimiter"));
+            var line = scanner.nextLine().split(argsName.get("delimiter"));
+            var filterLines = argsName.get("filter").split(",");
+            for (String s : filterLines) {
+                for (int i = 0; i < line.length; i++) {
+                    if (line[i].equals(s)) {
+                        columns.add(i);
+                        result.add(line[i]);
                     }
                 }
+            }
                 if ("stdout".equals(argsName.get("out"))) {
-                    System.out.print(result);
+                    System.out.println(result);
                 } else {
                     try (PrintWriter pw = new PrintWriter(new FileWriter(
                             argsName.get("out"), StandardCharsets.UTF_8, true))) {
@@ -31,52 +32,55 @@ public class CSVReader {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                result = new StringJoiner(argsName.get("delimiter"));
-            }
+                    result = new StringJoiner(argsName.get("delimiter"));
+                }
             check(argsName, result, scanner, columns);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     private static void check(ArgsName argsName, StringJoiner result,
                               Scanner scanner, List<Integer> columns) {
         while (scanner.hasNext()) {
             String[] line = scanner.nextLine().split(argsName.get("delimiter"));
-            for (Integer number : columns) {
-                result.add(line[number]);
-            }
-            try (PrintWriter pw = new PrintWriter(new FileWriter(
-                    argsName.get("out"), StandardCharsets.UTF_8, true))) {
-                if ("stdout".equals(argsName.get("out"))) {
-                    System.out.println(result);
-                } else {
-                    pw.println(result);
+            for (int i = 0; i < line.length; i++) {
+                if (columns.contains(i)) {
+                    result.add(line[i]);
                 }
-                result = new StringJoiner(argsName.get("delimiter"));
-            } catch (IOException e) {
-                e.printStackTrace();
+            }
+            if ("stdout".equals(argsName.get("out"))) {
+                System.out.println(result);
+            } else {
+                try (PrintWriter pw = new PrintWriter(new FileWriter(
+                        argsName.get("out"), StandardCharsets.UTF_8, true))) {
+                    pw.println(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    result = new StringJoiner(argsName.get("delimiter"));
+                }
             }
         }
     }
 
     private static boolean isValid(String[] args) {
         ArgsName arg = ArgsName.of(args);
-        if (!arg.get("path").endsWith(".csv") || arg.get("path").isEmpty()) {
-            throw new IllegalArgumentException("Invalid argument. Specify - .csv");
+        if (!arg.get("path").endsWith(".csv")) {
+            throw new IllegalArgumentException("Invalid argument. Specify - .csv.");
         }
-        if (new File("path").isDirectory()) {
-            throw new IllegalArgumentException("The path is a directory. Specify the path to the file");
+        if (!new File(arg.get("path")).isFile()) {
+            throw new IllegalArgumentException("The specified source file does not exist.");
+        }
+        if (args.length != 4) {
+            throw new IllegalArgumentException("The root folder is empty or there are not enough options. "
+                                               + "-path=file.csv -delimiter=\";\"  -out=stdout -filter=name,age");
         }
         return true;
     }
 
     public static void main(String[] args) {
         if (isValid(args)) {
-            if (args.length != 4) {
-                throw new IllegalArgumentException("The root folder is empty or there are not enough options. "
-                                                   + "-path=file.csv -delimiter=\";\"  -out=stdout -filter=name,age");
-            }
             var argsName = ArgsName.of(args);
             CSVReader.handle(argsName);
         }
