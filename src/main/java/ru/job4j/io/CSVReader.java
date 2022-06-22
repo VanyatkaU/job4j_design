@@ -58,8 +58,8 @@ public class CSVReader {
                     pw.println(result);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    result = new StringJoiner(argsName.get("delimiter"));
                 }
+                result = new StringJoiner(argsName.get("delimiter"));
             }
         }
     }
