@@ -7,39 +7,38 @@ import java.util.*;
 public class CSVReader {
 
     public static void handle(ArgsName argsName) {
-        List<Integer> columns = new ArrayList<>();
-        StringJoiner result = new StringJoiner(argsName.get("delimiter"));
         try (BufferedReader br = new BufferedReader(new FileReader(
                 argsName.get("path")))) {
             var scanner = new Scanner(br)
                     .useDelimiter(argsName.get("delimiter"));
+            List<Integer> columns = new ArrayList<>();
+            StringJoiner result = new StringJoiner(argsName.get("delimiter"));
             var line = scanner.nextLine().split(argsName.get("delimiter"));
             var filterLines = argsName.get("filter").split(",");
-            for (String s : filterLines) {
-                for (int i = 0; i < line.length; i++) {
-                    if (line[i].equals(s)) {
+            for (int i = 0; i < line.length; i++) {
+                for (String s : filterLines) {
+                    if (s.equals(line[i])) {
                         columns.add(i);
                         result.add(line[i]);
                     }
                 }
             }
-                if ("stdout".equals(argsName.get("out"))) {
-                    System.out.println(result);
-                } else {
-                    try (PrintWriter pw = new PrintWriter(new FileWriter(
-                            argsName.get("out"), StandardCharsets.UTF_8, true))) {
-                        pw.write(result + System.lineSeparator());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    result = new StringJoiner(argsName.get("delimiter"));
+            if ("stdout".equals(argsName.get("out"))) {
+                System.out.println(result);
+            } else {
+                try (PrintWriter pw = new PrintWriter(new FileWriter(
+                        argsName.get("out"), StandardCharsets.UTF_8, true))) {
+                    pw.write(result + System.lineSeparator());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+            }
+            result = new StringJoiner(argsName.get("delimiter"));
             check(argsName, result, scanner, columns);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     private static void check(ArgsName argsName, StringJoiner result,
                               Scanner scanner, List<Integer> columns) {
@@ -59,8 +58,8 @@ public class CSVReader {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                result = new StringJoiner(argsName.get("delimiter"));
             }
+            result = new StringJoiner(argsName.get("delimiter"));
         }
     }
 
