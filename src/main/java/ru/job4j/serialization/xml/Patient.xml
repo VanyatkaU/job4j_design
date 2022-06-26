@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<patient riskGroup="false" age="35" name="Ivan">
+    <contact phone="11-111"/>
+    <bloodTests>
+        <bloodTest>hemoglobin</bloodTest>
+        <bloodTest>red blood cells</bloodTest>
+        <bloodTests>platelets</bloodTests>
+        <bloodTest>leukocytes</bloodTest>
+    </bloodTests>
+</patient>
