@@ -9,7 +9,7 @@ import java.io.StringWriter;
 public class Main {
     public static void main(String[] args) throws Exception {
         final Patient patient = new Patient(false, 35, "Ivan", new Contact("11-111"),
-                new String[] {"hemoglobin", "red blood cells", "platelets", "leukocytes"});
+                "hemoglobin", "red blood cells", "platelets", "leukocytes");
 
         JAXBContext context = JAXBContext.newInstance(Patient.class);
         Marshaller marshaller = context.createMarshaller();

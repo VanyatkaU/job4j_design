@@ -1,6 +1,10 @@
 package ru.job4j.serialization.json;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
+import java.io.StringWriter;
 import java.util.Arrays;
 
 @XmlRootElement(name = "patient")
@@ -21,9 +25,7 @@ public class Patient {
     @XmlElement(name = "bloodTest")
     private String[] bloodTests;
 
-    public Patient() { }
-
-    public Patient(boolean riskGroup, int age, String name, Contact contact, String[] bloodTests) {
+    public Patient(boolean riskGroup, int age, String name, Contact contact, String... bloodTests) {
         this.riskGroup = riskGroup;
         this.age = age;
         this.name = name;
@@ -42,4 +44,20 @@ public class Patient {
                + '}';
     }
 
+    public static void main(String[] args) throws JAXBException {
+
+        final Patient patient = new Patient(false, 35, "Ivan", new Contact("11-111"), "hemoglobin", "red blood cells", "platelets", "leukocytes");
+
+        JAXBContext context = JAXBContext.newInstance(Patient.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(patient, writer);
+            String result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
