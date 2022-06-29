@@ -4,7 +4,7 @@
     <bloodTests>
         <bloodTest>hemoglobin</bloodTest>
         <bloodTest>red blood cells</bloodTest>
-        <bloodTests>platelets</bloodTests>
+        <bloodTest>platelets</bloodTest>
         <bloodTest>leukocytes</bloodTest>
     </bloodTests>
 </patient>
