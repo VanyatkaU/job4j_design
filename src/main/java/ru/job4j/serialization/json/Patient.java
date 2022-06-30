@@ -37,6 +37,26 @@ public class Patient {
         this.bloodTests = bloodTests;
     }
 
+    public boolean isRiskGroup() {
+        return riskGroup;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String[] getBloodTests() {
+        return bloodTests;
+    }
+
     @Override
     public String toString() {
         return "Patient{"
