@@ -1,13 +1,15 @@
 package ru.job4j.serialization.json;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws JAXBException, IOException {
         final Patient patient = new Patient(false, 35, "Ivan", new Contact("11-111"),
                 "hemoglobin", "red blood cells", "platelets", "leukocytes");
 

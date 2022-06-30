@@ -21,9 +21,13 @@ public class Patient {
     private String name;
     private Contact contact;
 
-    @XmlElementWrapper
+    @XmlElementWrapper(name = "bloodTest")
     @XmlElement(name = "bloodTest")
     private String[] bloodTests;
+
+    public Patient() {
+
+    }
 
     public Patient(boolean riskGroup, int age, String name, Contact contact, String... bloodTests) {
         this.riskGroup = riskGroup;
