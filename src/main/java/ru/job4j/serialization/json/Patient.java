@@ -21,7 +21,7 @@ public class Patient {
     private String name;
     private Contact contact;
 
-    @XmlElementWrapper(name = "bloodTests")
+    @XmlElementWrapper
     @XmlElement(name = "bloodTest")
     private String[] bloodTests;
 
