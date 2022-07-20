@@ -10,10 +10,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.jar.JarException;
 
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -49,7 +47,7 @@ public class Person {
     }
 
     public static void main(String[] args) throws JAXBException {
-        final  Person person = new Person(false, 30,new Contact("11-111"), "Worker", "Married");
+        final  Person person = new Person(false, 30, new Contact("11-111"), "Worker", "Married");
 
         JAXBContext context = JAXBContext.newInstance(Person.class);
         Marshaller marshaller = context.createMarshaller();
