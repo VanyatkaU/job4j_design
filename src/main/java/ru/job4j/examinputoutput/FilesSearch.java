@@ -1,4 +1,4 @@
-package ru.job4j.examInputOutput;
+package ru.job4j.examinputoutput;
 
 import ru.job4j.io.ArgsName;
 
@@ -36,9 +36,7 @@ public class FilesSearch {
                 Ключи\s
                 -d - директория, в которой начинать поиск.
                 -n - имя файла, маска, либо регулярное выражение.
-                -t - тип поиска: mask искать по маске,\s
-                name по полному совпадению имени,\s
-                regex по регулярному выражению.
+                -t - тип поиска: mask искать по маске, name по полному совпадению имени, regex по регулярному выражению.
                 -o - результат записать в файл .txt.""";
         if (args.length != 4) {
             throw new IllegalArgumentException("The root folder is empty or "
