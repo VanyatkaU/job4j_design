@@ -62,7 +62,5 @@ public class FilesSearch {
         ArgsName argsName = ArgsName.of(args);
         isValid(args, argsName);
         findFiles(argsName);
-        Predicate<Path> result = null;
-        writeToFile(argsName, result);
     }
 }
