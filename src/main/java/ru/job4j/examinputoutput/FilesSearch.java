@@ -33,7 +33,7 @@ public class FilesSearch {
     private static void isValid(String[] args, ArgsName argsName) {
         String help = """
                 Программа должна собираться в jar и запускаться через java -jar find.jar -d=c:/ -n=*.?xt -t=mask -o=log.txt
-                Ключи\s
+                Ключи:
                 -d - директория, в которой начинать поиск.
                 -n - имя файла, маска, либо регулярное выражение.
                 -t - тип поиска: mask искать по маске, name по полному совпадению имени, regex по регулярному выражению.
