@@ -48,8 +48,8 @@ on e.department_id = d.id;
 
 select * from departments d cross join employees e;
 
-select * from employees e left join departments d 
-on e.department_id = d.id where d.id is null;
+select * from departments d left join employees e
+on e.department_id = d.id where e.department_id is null;
 
 
 select e.id, e.name, d.name as department from departments d 
