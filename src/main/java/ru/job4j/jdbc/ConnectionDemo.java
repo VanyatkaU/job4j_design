@@ -18,7 +18,7 @@ public class ConnectionDemo {
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
         }
-        Config config = new Config("app.properties");
+        Config config = new Config("src/main/resources/app.properties");
         config.load();
         System.out.println(config.value("hibernate.connection.url"));
         System.out.println(config.value("hibernate.connection.username"));
