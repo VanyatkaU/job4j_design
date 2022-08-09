@@ -17,7 +17,11 @@ public class ConnectionDemo {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
-            System.out.println(new Config("app.properties"));
         }
+        Config config = new Config("app.properties");
+        config.load();
+        System.out.println(config.value("hibernate.connection.url"));
+        System.out.println(config.value("hibernate.connection.username"));
+        System.out.println(config.value("hibernate.connection.password"));
     }
 }
