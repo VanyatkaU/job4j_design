@@ -17,11 +17,10 @@ public class TableEditor implements AutoCloseable {
 
     private void initConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
-        connection = DriverManager.getConnection(
-                properties.getProperty("jdbc:postgresql://localhost:5432/idea_db"),
-                properties.getProperty("postgres"),
-                properties.getProperty("password")
-        );
+        String url = properties.getProperty("hibernate.connection.url");
+        String login = properties.getProperty("hibernate.connection.username");
+        String password = properties.getProperty("hibernate.connection.password");
+        connection = DriverManager.getConnection(url, login, password);
     }
 
     public void createTable(String tableName) throws Exception {
@@ -94,7 +93,7 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("src/main/resources/app.properties")) {
             properties.load(in);
             try (TableEditor tableEditor = new TableEditor(properties)) {
                 String tableName = "demo_table";
@@ -104,7 +103,6 @@ public class TableEditor implements AutoCloseable {
                 tableEditor.dropColumn(tableName, "name");
                 tableEditor.renameColumn(tableName, "name", "newName");
             }
-
         }
     }
 }
