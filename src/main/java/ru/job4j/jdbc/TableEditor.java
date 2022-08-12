@@ -16,7 +16,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
+        Class.forName(properties.getProperty("org.postgresql.Driver"));
         String url = properties.getProperty("hibernate.connection.url");
         String login = properties.getProperty("hibernate.connection.username");
         String password = properties.getProperty("hibernate.connection.password");
@@ -36,7 +36,6 @@ public class TableEditor implements AutoCloseable {
         String sql = String.format("drop table %s;",
                 tableName);
         statement.execute(sql);
-        statement.executeUpdate(sql);
         System.out.println(getTableScheme(connection, tableName));
     }
 
@@ -63,7 +62,6 @@ public class TableEditor implements AutoCloseable {
         statement.execute(sql);
         System.out.println(getTableScheme(connection, tableName));
     }
-
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
         var rowSeparator = "-".repeat(30).concat(System.lineSeparator());
@@ -93,15 +91,14 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("src/main/resources/app.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
             properties.load(in);
             try (TableEditor tableEditor = new TableEditor(properties)) {
-                String tableName = "demo_table";
-                tableEditor.createTable(tableName);
-                tableEditor.dropTable(tableName);
-                tableEditor.addColumn(tableName, "name", "varchar(255)");
-                tableEditor.dropColumn(tableName, "name");
-                tableEditor.renameColumn(tableName, "name", "newName");
+                tableEditor.createTable("tableName");
+                tableEditor.dropTable("tableName");
+                tableEditor.addColumn("tableName", "name", "varchar(255)");
+                tableEditor.dropColumn("tableName", "name");
+                tableEditor.renameColumn("tableName", "name", "newName");
             }
         }
     }
