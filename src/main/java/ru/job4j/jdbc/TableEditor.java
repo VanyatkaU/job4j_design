@@ -16,7 +16,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
+        Class.forName(properties.getProperty("org.postgresql.Driver"));
         String url = properties.getProperty("hibernate.connection.url");
         String login = properties.getProperty("hibernate.connection.username");
         String password = properties.getProperty("hibernate.connection.password");
