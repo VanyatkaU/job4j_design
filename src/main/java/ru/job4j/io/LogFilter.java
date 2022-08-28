@@ -9,7 +9,8 @@ public class LogFilter {
     public static List<String> filter(String file) {
         List<String> list = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            list = in.lines().filter(s -> { String[] str = s.split(" ");
+            list = in.lines().filter(s -> { 
+                String[] str = s.split(" ");
                 return ("404").equals(str[str.length - 2]);
             }).collect(Collectors.toList());
         } catch (IOException e) {
