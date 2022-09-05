@@ -17,7 +17,7 @@ $$
     END;
 $$
 LANGUAGE 'plpgsql'
-
+триггер после вставки statement
 create trigger tax_trigger
     after insert on products
     referencing new table as inserted
@@ -34,6 +34,11 @@ $$
 $$
 LANGUAGE 'plpgsql';
 
+create trigger tax_before_trigger
+    before insert on products
+    for each row
+    execute procedure tax_before();
+
 create table history_of_price (
     id serial primary key,
     name varchar(50),
@@ -45,7 +50,7 @@ create or replace function history_of_price()
     returns trigger as
 $$
     BEGIN
-        insert into history_of_price (name, price, date) values (new.name, new.price, new());
+        insert into history_of_price (name, price, date) values (new.name, new.price, current_date));
         return NEW;
     END;
 $$
