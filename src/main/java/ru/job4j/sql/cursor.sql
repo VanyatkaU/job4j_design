@@ -45,11 +45,11 @@ commit;
 
 declare cursor_products scroll cursor for select * from products;
 
-move forward 20 from cursor_products;
+FETCH last FROM cursor_products;
 
-FETCH backward 10 FROM cursor_products;
+FETCH backward 19 FROM cursor_products;
 
-FETCH prior FROM cursor_products;
+FETCH next FROM cursor_products;
 
 move forward 2 from cursor_products;
 
