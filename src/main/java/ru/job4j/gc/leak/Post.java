@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class Post {
 
-    private int id;
+    private Integer id;
 
     private String text;
 
     private List<Comment> comments;
 
-    public Post(int id, String text, List<Comment> comments) {
+    public Post(Integer id, String text, List<Comment> comments) {
         this.id = id;
         this.text = text;
         this.comments = comments;
@@ -25,7 +25,7 @@ public class Post {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,7 +54,7 @@ public class Post {
             return false;
         }
         Post post = (Post) o;
-        return id == post.id && Objects.equals(text, post.text)
+        return Objects.equals(id, post.id) && Objects.equals(text, post.text)
                && Objects.equals(comments, post.comments);
     }
 
