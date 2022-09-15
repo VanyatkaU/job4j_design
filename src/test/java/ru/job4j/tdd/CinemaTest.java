@@ -53,7 +53,8 @@ public class CinemaTest {
         Calendar date = Calendar.getInstance();
         Cinema cinema = new Cinema3D();
         Ticket ticket = cinema.buy(account, 1, 1, date);
-        assertThat(ticket).isEqualTo(cinema.buy(account, 1, 1, date));
+        assertThrows(IllegalArgumentException.class, () ->
+                cinema.buy(account, 1, 1, date));
     }
 
 
