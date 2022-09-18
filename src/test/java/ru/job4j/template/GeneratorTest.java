@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class GeneratorTest {
 
     @Test
-    void produce() {
+    void whenCorrectProduce() {
         Generator generator = new SimpleGenerator();
         Map<String, String> map = new HashMap<>();
         map.put("name", "Ivan");
