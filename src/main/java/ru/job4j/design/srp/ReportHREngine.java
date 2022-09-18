@@ -1,6 +1,5 @@
 package ru.job4j.design.srp;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.function.Predicate;
 
