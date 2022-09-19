@@ -5,11 +5,14 @@ import java.util.function.Predicate;
 
 public record ReportAccountantEngine(Store store) implements Report {
 
+    private static final double TAX = 0.13d;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
             "dd:MM:yyyy HH:mm");
 
     @Override
     public String generate(Predicate<Employee> filter) {
+        Employee emp = new Employee();
+        emp.setSalary(emp.getSalary() * (1 - TAX));
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());

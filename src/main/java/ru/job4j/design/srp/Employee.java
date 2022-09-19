@@ -9,14 +9,15 @@ public class Employee {
     private Calendar hired;
     private Calendar fired;
     private double salary;
-    private double tax = 0.87d;
-
 
     public Employee(String name, Calendar hired, Calendar fired, double salary) {
         this.name = name;
         this.hired = hired;
         this.fired = fired;
         this.salary = salary;
+    }
+
+    public Employee() {
     }
 
     public String getName() {
@@ -49,7 +50,7 @@ public class Employee {
 
     public double setSalary(double salary) {
         this.salary = salary;
-        return getSalary() * (1 - tax);
+        return salary;
     }
 
     @Override

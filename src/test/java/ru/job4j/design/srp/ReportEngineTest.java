@@ -82,5 +82,4 @@ class ReportEngineTest {
                 .append(System.lineSeparator());
         assertThat(hrEngine.generate(em -> true)).isEqualTo(expect.toString());
     }
-
 }
