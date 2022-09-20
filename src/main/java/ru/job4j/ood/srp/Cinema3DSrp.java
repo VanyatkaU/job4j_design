@@ -9,6 +9,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Класс не реализует абстракцию (интерфейс).
+ * Класс реализует несколько функций (находит сеанс, покупка билета, добавление сеанса в список).
+ * Класс создает и инициализирует объект.
+ */
+
 public class Cinema3DSrp {
 
     public List<Session> find(Predicate<Session> filter) {
@@ -27,8 +33,3 @@ public class Cinema3DSrp {
         session.forEach(System.out::println);
     }
 }
-/**
- * Класс не реализует абстракцию (интерфейс).
- * Класс реализует несколько функций (находит сеанс, покупка билета, добавление сеанса в список).
- * Класс создает и инициализирует объект.
- */
