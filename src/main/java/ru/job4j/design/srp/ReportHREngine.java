@@ -3,7 +3,13 @@ package ru.job4j.design.srp;
 import java.util.List;
 import java.util.function.Predicate;
 
-public record ReportHREngine(Store store) implements Report {
+public class ReportHREngine implements Report {
+
+    private Store store;
+
+    public ReportHREngine(Store store) {
+        this.store = store;
+    }
 
     @Override
     public String generate(Predicate<Employee> filter) {

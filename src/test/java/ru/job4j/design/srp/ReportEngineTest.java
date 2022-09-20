@@ -54,6 +54,7 @@ class ReportEngineTest {
         Report programmersEngine = new ReportProgrammersEngine(store);
         StringBuilder expect = new StringBuilder()
                 .append("<html><head></head><body>")
+                .append("<div>Name</div><div>Hired</div><div>Fired</div><div>Salary</div>")
                 .append("<div>").append(worker.getName()).append("</div>")
                 .append("<div>").append(worker.getHired()).append("</div>")
                 .append("<div>").append(worker.getFired()).append("</div>")

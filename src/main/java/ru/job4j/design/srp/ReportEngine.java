@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 
 public class ReportEngine implements Report {
 
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
+            "dd:MM:yyyy HH:mm");
 
     private Store store;
 
