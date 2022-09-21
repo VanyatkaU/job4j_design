@@ -17,12 +17,12 @@ public class ReportAccountantEngine implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        Employee emp = new Employee();
-        emp.setSalary(emp.getSalary() * (1 - TAX));
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
+            Employee emp = new Employee();
+            emp.setSalary(employee.getSalary() * (1 - TAX));
             text.append(employee.getName()).append(";")
                     .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
                     .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
