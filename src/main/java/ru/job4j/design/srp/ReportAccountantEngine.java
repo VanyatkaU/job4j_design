@@ -21,12 +21,10 @@ public class ReportAccountantEngine implements Report {
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
-            Employee emp = new Employee();
-            emp.setSalary(employee.getSalary() * (1 - TAX));
             text.append(employee.getName()).append(";")
                     .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
                     .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
-                    .append(emp.setSalary(employee.getSalary())).append(";")
+                    .append(employee.setSalary(employee.getSalary() * (1 - TAX))).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();
