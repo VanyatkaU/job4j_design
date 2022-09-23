@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class ReportAccountantEngine implements Report {
 
-    private static final double TAX = 0.13d;
+    public static final double TAX = (1 - 0.13);
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
             "dd:MM:yyyy HH:mm");
 
@@ -24,7 +24,7 @@ public class ReportAccountantEngine implements Report {
             text.append(employee.getName()).append(";")
                     .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
                     .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
-                    .append(employee.setSalary(employee.getSalary() * (1 - TAX))).append(";")
+                    .append(employee.setSalary(employee.getSalary() * TAX)).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();

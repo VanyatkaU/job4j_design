@@ -31,7 +31,6 @@ class ReportEngineTest {
     public void whenAccountantGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        double tax = 0.13d;
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
                 Report accountantEngine = new ReportAccountantEngine(store);
@@ -41,7 +40,7 @@ class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(DATE_FORMAT.format(worker.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker.getFired().getTime())).append(";")
-                .append(worker.getSalary() * (1 - tax)).append(";")
+                .append(worker.getSalary() * ReportAccountantEngine.TAX).append(";")
                 .append(System.lineSeparator());
         assertThat(accountantEngine.generate(em -> true)).isEqualTo(expect.toString());
     }
