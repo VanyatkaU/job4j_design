@@ -3,8 +3,10 @@ package ru.job4j.design.srp;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportXML implements Report {
@@ -16,7 +18,7 @@ public class ReportXML implements Report {
     }
 
     @Override
-    public String generate(Predicate<Employee> filter) {
+    public String generate(Predicate<Employee> filter) throws RuntimeException {
         String xml = "";
         try {
             JAXBContext context = JAXBContext.newInstance(Employees.class);
@@ -30,5 +32,20 @@ public class ReportXML implements Report {
             e.printStackTrace();
         }
         return xml;
+    }
+
+    @XmlRootElement(name = "employees")
+    @XmlAccessorType(XmlAccessType.FIELD)
+    public static class Employees {
+
+        @XmlElement(name = "employee")
+        private List<Employee> employees;
+
+        public Employees() {
+        }
+
+        public Employees(List<Employee> employees) {
+            this.employees = employees;
+        }
     }
 }

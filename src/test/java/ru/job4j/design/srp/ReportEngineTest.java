@@ -2,6 +2,7 @@ package ru.job4j.design.srp;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -84,27 +85,28 @@ class ReportEngineTest {
         assertThat(hrEngine.generate(em -> true)).isEqualTo(expect.toString());
     }
 
-    /**@Test
+    @Test
     public void whenXMLGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         store.add(worker);
         Report xmlEngine = new ReportXML(store);
         StringBuilder expect = new StringBuilder()
-                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
                 .append("<employees>\n")
                 .append("    <employee>\n")
-                .append("        <hired>").append(DATE_FORMAT.format(worker.getHired()
-                        .getTime())).append("</hired>\n")
-                .append("        <fired>").append(DATE_FORMAT.format(worker.getFired()
+                .append("        <fired>").append(formater.format(worker.getFired()
                         .getTime())).append("</fired>\n")
+                .append("        <hired>").append(formater.format(worker.getHired()
+                        .getTime())).append("</hired>\n")
                 .append("        <name>").append(worker.getName()).append("</name>\n")
                 .append("        <salary>").append(worker.getSalary()).append("</salary>\n")
                 .append("    </employee>\n")
                 .append("</employees>\n");
         assertThat(xmlEngine.generate(em -> true)).isEqualTo(expect.toString());
-    }*/
+    }
 
     @Test
     public void whenJSONGenerated() {
