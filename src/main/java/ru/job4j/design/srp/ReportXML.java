@@ -12,6 +12,8 @@ import java.util.function.Predicate;
 public class ReportXML implements Report {
 
     private final Store store;
+    private JAXBContext context;
+    private Marshaller marshaller;
 
     public ReportXML(Store store) {
         this.store = store;
@@ -21,8 +23,8 @@ public class ReportXML implements Report {
     public String generate(Predicate<Employee> filter) throws RuntimeException {
         String xml = "";
         try {
-            JAXBContext context = JAXBContext.newInstance(Employees.class);
-            Marshaller marshaller = context.createMarshaller();
+            context = JAXBContext.newInstance(Employees.class);
+            marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             try (StringWriter writer = new StringWriter()) {
                 marshaller.marshal(new Employees(store.findBy(filter)), writer);
