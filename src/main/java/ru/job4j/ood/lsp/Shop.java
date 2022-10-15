@@ -14,19 +14,17 @@ public class Shop implements Store {
     public boolean add(Food food) {
         boolean rsl = false;
         if (getPercentExpiry(food) >= limit25 && getPercentExpiry(food) < limit75) {
-            shop.add(food);
-            rsl = true;
+            if (getPercentExpiry(food) >= limit75 && getPercentExpiry(food) < limit100) {
+                food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
+            }
+                shop.add(food);
+                rsl = true;
+            }
+            return rsl;
         }
-        if (getPercentExpiry(food) >= limit75 && getPercentExpiry(food) < limit100) {
-            food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
-            shop.add(food);
-            rsl = true;
-        }
-        return rsl;
-    }
 
-    @Override
-    public List<Food> getAllFood() {
-        return List.copyOf(shop);
+        @Override
+        public List<Food> getAllFood() {
+            return List.copyOf(shop);
+        }
     }
-}

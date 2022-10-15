@@ -11,7 +11,7 @@ public class Trash implements Store {
     @Override
     public boolean add(Food food) {
         boolean rsl = false;
-        if (getPercentExpiry(food) <= limit100) {
+        if (getPercentExpiry(food) >= limit100) {
             trash.add(food);
             rsl = true;
         }
