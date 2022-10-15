@@ -44,8 +44,8 @@ class ControlQualityTest {
 
     @Test
     public void whenPercentExpiryEquals100() {
-        LocalDateTime expired = LocalDateTime.now().plusDays(0);
-        LocalDateTime created = LocalDateTime.now().minusDays(21);
+        LocalDateTime expired = LocalDateTime.now().minusDays(1);
+        LocalDateTime created = LocalDateTime.now().minusDays(20);
         Food butter = new Butter("масло", expired, created, 185.00, 15.0);
         controlQuality.checkFood(butter);
         assertThat(trash.getAllFood()).contains(butter);
@@ -59,7 +59,7 @@ class ControlQualityTest {
                 250.00, 20);
         Food sausage = new Sausage("колбаса", LocalDateTime.now().plusDays(8), LocalDateTime.now().minusDays(15),
                 350.00, 25);
-        Food butter = new Butter("масло", LocalDateTime.now().plusDays(0), LocalDateTime.now().minusDays(21),
+        Food butter = new Butter("масло", LocalDateTime.now().minusDays(1), LocalDateTime.now().minusDays(20),
                 185.00, 15);
         Food milk = new Milk("молоко", LocalDateTime.now().plusDays(5), LocalDateTime.now().minusDays(1),
                 100.00, 12);
