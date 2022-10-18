@@ -1,8 +1,8 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.model;
 
 import java.time.LocalDateTime;
 
-abstract class Food {
+public abstract class Food {
 
     private String name;
     private LocalDateTime expiryDate;

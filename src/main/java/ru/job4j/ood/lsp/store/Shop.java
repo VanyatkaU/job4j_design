@@ -1,12 +1,13 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.store;
+
+import ru.job4j.ood.lsp.model.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.job4j.ood.lsp.AbstractStore.getPercentExpiry;
-import static ru.job4j.ood.lsp.Constants.*;
+import static ru.job4j.ood.lsp.store.Constants.*;
 
-public class Shop implements Store {
+public class Shop extends AbstractStore {
 
     private final List<Food> shop = new ArrayList<>();
 
@@ -17,14 +18,14 @@ public class Shop implements Store {
             if (getPercentExpiry(food) >= LIMIT_75) {
                 food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
             }
-                shop.add(food);
-                rsl = true;
-            }
-            return rsl;
+            shop.add(food);
+            rsl = true;
         }
-
-        @Override
-        public List<Food> getAllFood() {
-            return List.copyOf(shop);
-        }
+        return rsl;
     }
+
+    @Override
+    public List<Food> getAllFood() {
+        return List.copyOf(shop);
+    }
+}
