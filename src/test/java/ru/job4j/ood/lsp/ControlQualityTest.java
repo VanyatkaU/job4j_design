@@ -22,7 +22,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(1);
         Food bread = new Bread("хлеб", expired, created, 85.00, 10.0);
         controlQuality.checkFood(bread);
-        assertThat(warehouse.getAllFood()).contains(bread);
+        assertThat(warehouse.getAllFood().contains(bread));
     }
 
     @Test
@@ -31,7 +31,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(8);
         Food cheese = new Cheese("сыр", expired, created, 250.50, 20);
         controlQuality.checkFood(cheese);
-        assertThat(shop.getAllFood()).contains(cheese);
+        assertThat(shop.getAllFood().contains(cheese));
     }
 
     @Test
@@ -40,8 +40,8 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(15);
         Food sausage = new Sausage("колбаса", expired, created, 350.0, 25);
         controlQuality.checkFood(sausage);
-        assertThat(shop.getAllFood()).contains(sausage);
-        assertThat(shop.getAllFood().get(0).getPrice() * (1 - (sausage.getDiscount() / 100))).isEqualTo(262.50);
+        assertThat(shop.getAllFood().contains(sausage));
+        assertThat(sausage.getPrice() * (1 - (sausage.getDiscount() / 100))).isEqualTo(262.50);
     }
 
     @Test
@@ -50,7 +50,7 @@ class ControlQualityTest {
         LocalDateTime created = LocalDateTime.now().minusDays(20);
         Food butter = new Butter("масло", expired, created, 185.00, 15.0);
         controlQuality.checkFood(butter);
-        assertThat(trash.getAllFood()).contains(butter);
+        assertThat(trash.getAllFood().contains(butter));
     }
 
     @Test
@@ -70,8 +70,8 @@ class ControlQualityTest {
         controlQuality.checkFood(sausage);
         controlQuality.checkFood(milk);
         controlQuality.checkFood(butter);
-        assertThat(warehouse.getAllFood()).containsAll(List.of(bread, milk));
-        assertThat(shop.getAllFood()).containsAll(List.of(cheese, sausage));
-        assertThat(trash.getAllFood()).contains(butter);
+        assertThat(warehouse.getAllFood().containsAll(List.of(bread, milk)));
+        assertThat(shop.getAllFood().containsAll(List.of(cheese, sausage)));
+        assertThat(trash.getAllFood().contains(butter));
     }
 }

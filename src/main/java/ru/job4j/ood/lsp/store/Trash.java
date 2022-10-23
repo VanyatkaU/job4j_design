@@ -2,25 +2,17 @@ package ru.job4j.ood.lsp.store;
 
 import ru.job4j.ood.lsp.model.Food;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Trash extends AbstractStore {
 
-    private final List<Food> trash = new ArrayList<>();
-
-    @Override
-    public boolean add(Food food) {
-        boolean rsl = false;
-        if (getPercentExpiry(food) >= Constants.LIMIT_100) {
-            trash.add(food);
-            rsl = true;
-        }
-        return rsl;
+    public Trash() {
+        super(LocalDateTime::compareTo);
     }
 
     @Override
-    public List<Food> getAllFood() {
+    protected List<Food> isExpired() {
         return List.copyOf(trash);
     }
 }
