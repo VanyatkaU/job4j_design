@@ -3,23 +3,27 @@ package ru.job4j.ood.lsp.store;
 import ru.job4j.ood.lsp.model.Food;
 
 import java.time.LocalDateTime;
-
-import static ru.job4j.ood.lsp.store.Constants.LIMIT_100;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Trash extends AbstractStore {
 
-    public Trash() {
-        super(LocalDateTime::compareTo);
-    }
+    private final double LIMIT_100 = 100D;
+
+    protected final List<Food> trash = new ArrayList<>();
 
     @Override
-    protected boolean isExpired(Food food) {
+    protected boolean isNotExpired(Food food) {
         boolean rsl = false;
-        if (expirationCalculator.calculateInPercent(food.getCreateDate(),
+        if (calculateInPercent(food.getCreateDate(),
                 food.getExpiryDate()) >= LIMIT_100) {
             trash.add(food);
             rsl = true;
         }
         return rsl;
+    }
+
+    private double calculateInPercent(LocalDateTime createDate, LocalDateTime expiryDate) {
+        return 0;
     }
 }

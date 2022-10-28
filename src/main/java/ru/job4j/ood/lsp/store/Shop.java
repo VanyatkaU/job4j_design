@@ -6,24 +6,23 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.job4j.ood.lsp.store.Constants.*;
 
 public class Shop extends AbstractStore {
 
+    private final double LIMIT_100 = 100D;
+    private final double LIMIT_75 = 75D;
+    private final double LIMIT_25 = 25D;
+
     protected final List<Food> shop = new ArrayList<>();
 
-    public Shop() {
-        super(LocalDateTime::compareTo);
-    }
-
     @Override
-    protected boolean isExpired(Food food) {
+    protected boolean isNotExpired(Food food) {
         boolean rsl = false;
-        if (expirationCalculator.calculateInPercent(food.getCreateDate(),
+        if (calculateInPercent(food.getCreateDate(),
                 food.getExpiryDate()) >= LIMIT_25
-            && expirationCalculator.calculateInPercent(food.getCreateDate(),
+            && calculateInPercent(food.getCreateDate(),
                 food.getExpiryDate()) < LIMIT_100) {
-            if (expirationCalculator.calculateInPercent(food.getCreateDate(),
+            if (calculateInPercent(food.getCreateDate(),
                     food.getExpiryDate()) >= LIMIT_75) {
                 food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
             }
@@ -31,5 +30,9 @@ public class Shop extends AbstractStore {
             rsl = true;
         }
         return rsl;
+    }
+
+    private double calculateInPercent(LocalDateTime createDate, LocalDateTime expiryDate) {
+        return 0;
     }
 }
