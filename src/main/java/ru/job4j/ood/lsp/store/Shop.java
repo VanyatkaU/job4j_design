@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Shop extends AbstractStore {
 
-    private final double LIMIT_100 = 100D;
-    private final double LIMIT_75 = 75D;
-    private final double LIMIT_25 = 25D;
+    private final double limit_100 = 100D;
+    private final double limit_75 = 75D;
+    private final double limit_25 = 25D;
 
     protected final List<Food> shop = new ArrayList<>();
 
@@ -19,11 +19,11 @@ public class Shop extends AbstractStore {
     protected boolean isNotExpired(Food food) {
         boolean rsl = false;
         if (calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) >= LIMIT_25
+                food.getExpiryDate()) >= limit_25
             && calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) < LIMIT_100) {
+                food.getExpiryDate()) < limit_100) {
             if (calculateInPercent(food.getCreateDate(),
-                    food.getExpiryDate()) >= LIMIT_75) {
+                    food.getExpiryDate()) >= limit_75) {
                 food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
             }
             shop.add(food);
