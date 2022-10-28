@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Trash extends AbstractStore {
 
-    private final double limit_100 = 100D;
+    private final double Limit_100 = 100D;
 
     protected final List<Food> trash = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class Trash extends AbstractStore {
     protected boolean isNotExpired(Food food) {
         boolean rsl = false;
         if (calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) >= limit_100) {
+                food.getExpiryDate()) >= Limit_100) {
             trash.add(food);
             rsl = true;
         }
