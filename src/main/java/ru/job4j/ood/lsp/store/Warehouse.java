@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Warehouse extends AbstractStore {
 
-    private final double Limit_25 = 25D;
+    private final double mIN = 25D;
 
     protected final List<Food> warehouse = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class Warehouse extends AbstractStore {
     protected boolean isNotExpired(Food food) {
         boolean rsl = false;
         if (calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) < Limit_25) {
+                food.getExpiryDate()) < mIN) {
             warehouse.add(food);
             rsl = true;
         }
