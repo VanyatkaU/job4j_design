@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 public class Shop extends AbstractStore {
 
-    private final double LIMIT = 100D;
-    private final double THRESHOLD_UPPER = 75D;
-    private final double THRESHOLD_LOWER = 25D;
+    private static final double LIMIT = 100D;
+    private static final double THRESHOLD_UPPER = 75D;
+    private static final double THRESHOLD_LOWER = 25D;
 
     private ExpirationCalculator<LocalDateTime> expirationCalculator;
 

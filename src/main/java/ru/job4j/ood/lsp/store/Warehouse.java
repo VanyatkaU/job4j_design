@@ -20,5 +20,4 @@ public class Warehouse extends AbstractStore {
         return expirationCalculator.calculateInPercent(food.getCreateDate(),
                 food.getExpiryDate()) < THRESHOLD_LOWER;
     }
-
 }
