@@ -9,8 +9,8 @@ public class LocalDateTimeExpirationCalculator implements ExpirationCalculator<L
 
     @Override
     public int calculateInPercent(LocalDateTime startDate, LocalDateTime endDate) {
-        double expiryOne = ChronoUnit.DAYS.between(startDate, endDate);
-        double expiryTwo = ChronoUnit.DAYS.between(startDate, LocalDateTime.now());
-        return (int) (expiryTwo / expiryOne * PERCENTAGE);
+        double totalDuration = ChronoUnit.DAYS.between(startDate, endDate);
+        double expiredDuration = ChronoUnit.DAYS.between(startDate, LocalDateTime.now());
+        return (int) (expiredDuration / totalDuration * PERCENTAGE);
     }
 }

@@ -1,38 +1,30 @@
 package ru.job4j.ood.lsp.store;
 
 import ru.job4j.ood.lsp.model.Food;
+import ru.job4j.ood.lsp.util.ExpirationCalculator;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Shop extends AbstractStore {
 
-    private final double mAX = 100D;
-    private final double mIDDLE = 75D;
-    private final double mIN = 25D;
+    private final double LIMIT = 100D;
+    private final double THRESHOLD_UPPER = 75D;
+    private final double THRESHOLD_LOWER = 25D;
 
-    protected final List<Food> shop = new ArrayList<>();
+    private ExpirationCalculator<LocalDateTime> expirationCalculator;
+
+    public Shop(ExpirationCalculator<LocalDateTime> expirationCalculator) {
+        this.expirationCalculator = expirationCalculator;
+    }
 
     @Override
     protected boolean isNotExpired(Food food) {
-        boolean rsl = false;
-        if (calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) >= mIN
-            && calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) < mAX) {
-            if (calculateInPercent(food.getCreateDate(),
-                    food.getExpiryDate()) >= mIDDLE) {
+            if (expirationCalculator.calculateInPercent(food.getCreateDate(),
+                    food.getExpiryDate()) >= THRESHOLD_UPPER) {
                 food.setPrice(food.getPrice() * (1 - (food.getDiscount() / 100)));
             }
-            shop.add(food);
-            rsl = true;
-        }
-        return rsl;
-    }
-
-    private double calculateInPercent(LocalDateTime createDate, LocalDateTime expiryDate) {
-        return 0;
+        return expirationCalculator.calculateInPercent(food.getCreateDate(),
+                food.getExpiryDate()) >= THRESHOLD_LOWER && expirationCalculator.calculateInPercent(food.getCreateDate(),
+                food.getExpiryDate()) < LIMIT;
     }
 }

@@ -1,29 +1,24 @@
 package ru.job4j.ood.lsp.store;
 
 import ru.job4j.ood.lsp.model.Food;
+import ru.job4j.ood.lsp.util.ExpirationCalculator;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Trash extends AbstractStore {
 
-    private final double mAX = 100D;
+    private final double LIMIT = 100D;
 
-    protected final List<Food> trash = new ArrayList<>();
+    private final ExpirationCalculator<LocalDateTime> expirationCalculator;
+
+    public Trash(ExpirationCalculator<LocalDateTime> expirationCalculator) {
+        this.expirationCalculator = expirationCalculator;
+    }
 
     @Override
     protected boolean isNotExpired(Food food) {
-        boolean rsl = false;
-        if (calculateInPercent(food.getCreateDate(),
-                food.getExpiryDate()) >= mAX) {
-            trash.add(food);
-            rsl = true;
-        }
-        return rsl;
+        return expirationCalculator.calculateInPercent(food.getCreateDate(),
+                food.getExpiryDate()) >= LIMIT;
     }
 
-    private double calculateInPercent(LocalDateTime createDate, LocalDateTime expiryDate) {
-        return 0;
-    }
 }

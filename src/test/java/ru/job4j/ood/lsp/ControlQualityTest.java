@@ -3,6 +3,8 @@ package ru.job4j.ood.lsp;
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.lsp.model.*;
 import ru.job4j.ood.lsp.store.*;
+import ru.job4j.ood.lsp.util.ExpirationCalculator;
+import ru.job4j.ood.lsp.util.LocalDateTimeExpirationCalculator;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,47 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ControlQualityTest {
 
-    Store warehouse = new Warehouse();
-    Store shop = new Shop();
-    Store trash = new Trash();
+    ExpirationCalculator expirationCalculator = new LocalDateTimeExpirationCalculator();
+    Store warehouse = new Warehouse(expirationCalculator);
+    Store shop = new Shop(expirationCalculator);
+    Store trash = new Trash(expirationCalculator);
     ControlQuality controlQuality = new ControlQuality(List.of(warehouse, shop, trash));
-
-    @Test
-    public void whenPercentExpiryLess25() {
-        LocalDateTime expired = LocalDateTime.now().plusDays(10);
-        LocalDateTime created = LocalDateTime.now().minusDays(1);
-        Food bread = new Bread("хлеб", expired, created, 85.00, 10.0);
-        controlQuality.checkFood(bread);
-        assertThat(warehouse.getAllFood().contains(bread));
-    }
-
-    @Test
-    public void whenPercentExpiryMore25AndLess75() {
-        LocalDateTime expired = LocalDateTime.now().plusDays(15);
-        LocalDateTime created = LocalDateTime.now().minusDays(8);
-        Food cheese = new Cheese("сыр", expired, created, 250.50, 20);
-        controlQuality.checkFood(cheese);
-        assertThat(shop.getAllFood().contains(cheese));
-    }
-
-    @Test
-    public void whenPercentExpiryMore75AndDoDiscount() {
-        LocalDateTime expired = LocalDateTime.now().plusDays(8);
-        LocalDateTime created = LocalDateTime.now().minusDays(15);
-        Food sausage = new Sausage("колбаса", expired, created, 350.0, 25);
-        controlQuality.checkFood(sausage);
-        assertThat(shop.getAllFood().contains(sausage));
-        assertThat(sausage.getPrice() * (1 - (sausage.getDiscount() / 100))).isEqualTo(262.50);
-    }
-
-    @Test
-    public void whenPercentExpiryEqualsOrMore100() {
-        LocalDateTime expired = LocalDateTime.now().minusDays(1);
-        LocalDateTime created = LocalDateTime.now().minusDays(20);
-        Food butter = new Butter("масло", expired, created, 185.00, 15.0);
-        controlQuality.checkFood(butter);
-        assertThat(trash.getAllFood().contains(butter));
-    }
 
     @Test
     public void whenAllFoodOnControl() {
