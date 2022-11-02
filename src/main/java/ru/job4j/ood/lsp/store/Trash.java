@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class Trash extends AbstractStore {
 
-    private static final double LIMIT = 100D;
+    public static final double LIMIT = 100D;
 
     private final ExpirationCalculator<LocalDateTime> expirationCalculator;
 

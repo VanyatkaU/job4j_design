@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class Warehouse extends AbstractStore {
 
-    private static final double THRESHOLD_LOWER = 25D;
+    public static final double THRESHOLD_LOWER = 25D;
 
     private final ExpirationCalculator<LocalDateTime> expirationCalculator;
 

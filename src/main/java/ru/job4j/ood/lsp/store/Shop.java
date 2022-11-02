@@ -5,11 +5,12 @@ import ru.job4j.ood.lsp.util.ExpirationCalculator;
 
 import java.time.LocalDateTime;
 
+import static ru.job4j.ood.lsp.store.Trash.LIMIT;
+import static ru.job4j.ood.lsp.store.Warehouse.THRESHOLD_LOWER;
+
 public class Shop extends AbstractStore {
 
-    private static final double LIMIT = 100D;
-    private static final double THRESHOLD_UPPER = 75D;
-    private static final double THRESHOLD_LOWER = 25D;
+    public static final double THRESHOLD_UPPER = 75D;
 
     private ExpirationCalculator<LocalDateTime> expirationCalculator;
 
