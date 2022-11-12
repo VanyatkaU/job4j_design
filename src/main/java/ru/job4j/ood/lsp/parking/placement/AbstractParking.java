@@ -32,6 +32,6 @@ public class AbstractParking implements Parking {
 
     @Override
     public List<Car> getAllCar() {
-        return null;
+        return new ArrayList<>();
     }
 }
