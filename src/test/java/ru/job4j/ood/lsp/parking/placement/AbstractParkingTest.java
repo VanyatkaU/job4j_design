@@ -1,9 +1,9 @@
-package ru.job4j.ood.lsp.parkingCars.parking;
+package ru.job4j.ood.lsp.parking.placement;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.ood.lsp.parkingCars.model.Car;
-import ru.job4j.ood.lsp.parkingCars.model.Passenger;
-import ru.job4j.ood.lsp.parkingCars.model.Truck;
+import ru.job4j.ood.lsp.parking.model.Car;
+import ru.job4j.ood.lsp.parking.model.Passenger;
+import ru.job4j.ood.lsp.parking.model.Truck;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,6 +62,4 @@ class AbstractParkingTest {
         assertThatThrownBy(() -> new Truck(1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }

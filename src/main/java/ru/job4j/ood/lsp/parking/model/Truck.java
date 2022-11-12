@@ -1,6 +1,6 @@
-package ru.job4j.ood.lsp.parkingCars.model;
+package ru.job4j.ood.lsp.parking.model;
 
-import static ru.job4j.ood.lsp.parkingCars.model.Passenger.PASSENGER_SIZE;
+import static ru.job4j.ood.lsp.parking.model.Passenger.PASSENGER_SIZE;
 
 public class Truck implements Car {
 

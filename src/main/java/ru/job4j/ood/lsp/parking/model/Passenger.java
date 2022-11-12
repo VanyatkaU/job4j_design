@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.parkingCars.model;
+package ru.job4j.ood.lsp.parking.model;
 
 public class Passenger implements Car {
 
