@@ -1,4 +1,6 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.parkingCars.parking;
+
+import ru.job4j.ood.lsp.parkingCars.model.Car;
 
 import java.util.List;
 

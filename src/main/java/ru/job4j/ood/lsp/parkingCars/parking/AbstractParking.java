@@ -1,5 +1,8 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.parkingCars.parking;
 
+import ru.job4j.ood.lsp.parkingCars.model.Car;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractParking implements Parking {
@@ -9,12 +12,10 @@ public class AbstractParking implements Parking {
     private int passengerCarsPlace;
     private int trucksPlace;
 
-    public AbstractParking(List<Car> passengerCars,
-                           List<Car> trucks,
-                           int passengerCarsPlace,
+    public AbstractParking(int passengerCarsPlace,
                            int trucksPlace) {
-        this.passengerCars = passengerCars;
-        this.trucks = trucks;
+        this.passengerCars = new ArrayList<>(passengerCarsPlace);
+        this.trucks = new ArrayList<>(trucksPlace);
         this.passengerCarsPlace = passengerCarsPlace;
         this.trucksPlace = trucksPlace;
     }
