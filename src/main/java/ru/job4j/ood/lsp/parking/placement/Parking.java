@@ -10,5 +10,5 @@ public interface Parking {
 
     boolean accept(Car car);
 
-    List<Car> getAllCar();
+    List<Car> getAllCars();
 }
