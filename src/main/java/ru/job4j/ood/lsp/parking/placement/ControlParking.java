@@ -26,11 +26,11 @@ public class ControlParking implements Parking {
     public boolean add(Car car) {
         boolean accept = accept(car);
         if (accept) {
-            int sizeCar = car.getSize();
-            if (sizeCar > PASSENGER_SIZE && trucksPlace > 0) {
+            if (car.getSize() > PASSENGER_SIZE
+                && trucksPlace > PASSENGER_SIZE) {
                 trucks.add(car);
                 trucksPlace--;
-            } else if (sizeCar == PASSENGER_SIZE && passengerCarsPlace > 0) {
+            } else if (passengerCarsPlace >= PASSENGER_SIZE) {
                 passengerCars.add(car);
                 passengerCarsPlace -= car.getSize();
             }
@@ -40,9 +40,8 @@ public class ControlParking implements Parking {
 
     @Override
     public boolean accept(Car car) {
-        int sizeCar = car.getSize();
-        return passengerCarsPlace >= sizeCar
-               || (trucksPlace > 0 && sizeCar > PASSENGER_SIZE);
+        return passengerCarsPlace >= car.getSize()
+               || (trucksPlace > 0 && car.getSize() > PASSENGER_SIZE);
     }
 
     @Override
