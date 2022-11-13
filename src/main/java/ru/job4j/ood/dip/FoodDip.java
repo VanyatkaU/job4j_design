@@ -14,7 +14,7 @@ public class FoodDip {
 
     public final List<String> foods = new ArrayList<>();
 
-    public FoodDip() {
+    public FoodDip(String name) {
     }
 
     public boolean add(BreadDip bread) {
@@ -22,5 +22,13 @@ public class FoodDip {
             return true;
         }
         return foods.add(bread.getName());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
