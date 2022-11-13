@@ -27,7 +27,7 @@ public class ControlParking implements Parking {
         boolean accept = accept(car);
         if (accept) {
             if (car.getSize() > PASSENGER_SIZE
-                && trucksPlace > PASSENGER_SIZE) {
+                && trucksPlace >= PASSENGER_SIZE) {
                 trucks.add(car);
                 trucksPlace--;
             } else if (passengerCarsPlace >= PASSENGER_SIZE) {
@@ -41,7 +41,7 @@ public class ControlParking implements Parking {
     @Override
     public boolean accept(Car car) {
         return passengerCarsPlace >= car.getSize()
-               || (trucksPlace > 0 && car.getSize() > PASSENGER_SIZE);
+               || trucksPlace >= PASSENGER_SIZE;
     }
 
     @Override
