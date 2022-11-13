@@ -1,10 +1,10 @@
 package ru.job4j.ood.lsp;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.ood.lsp.model.*;
-import ru.job4j.ood.lsp.store.*;
-import ru.job4j.ood.lsp.util.ExpirationCalculator;
-import ru.job4j.ood.lsp.util.LocalDateTimeExpirationCalculator;
+import ru.job4j.ood.lsp.product.model.*;
+import ru.job4j.ood.lsp.product.store.*;
+import ru.job4j.ood.lsp.product.util.ExpirationCalculator;
+import ru.job4j.ood.lsp.product.util.LocalDateTimeExpirationCalculator;
 
 import java.time.LocalDateTime;
 import java.util.List;
