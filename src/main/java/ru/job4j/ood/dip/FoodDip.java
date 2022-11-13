@@ -5,8 +5,6 @@ package ru.job4j.ood.dip;
  * Сохранение идет в память, следует FoodDip реализовать через абстракцию.
  */
 
-import ru.job4j.ood.lsp.productStore.model.Bread;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class FoodDip {
     public FoodDip() {
     }
 
-    public boolean add(Bread bread) {
+    public boolean add(BreadDip bread) {
         if (foods.contains(bread.getName())) {
             return true;
         }
