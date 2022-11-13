@@ -1,12 +1,12 @@
-package ru.job4j.ood.lsp.store;
+package ru.job4j.ood.lsp.product.store;
 
-import ru.job4j.ood.lsp.model.Food;
-import ru.job4j.ood.lsp.util.ExpirationCalculator;
+import ru.job4j.ood.lsp.product.model.Food;
+import ru.job4j.ood.lsp.product.util.ExpirationCalculator;
 
 import java.time.LocalDateTime;
 
-import static ru.job4j.ood.lsp.store.Trash.LIMIT;
-import static ru.job4j.ood.lsp.store.Warehouse.THRESHOLD_LOWER;
+import static ru.job4j.ood.lsp.product.store.Trash.LIMIT;
+import static ru.job4j.ood.lsp.product.store.Warehouse.THRESHOLD_LOWER;
 
 public class Shop extends AbstractStore {
 

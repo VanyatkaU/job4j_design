@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.util;
+package ru.job4j.ood.lsp.product.util;
 
 public interface ExpirationCalculator<T> {
 

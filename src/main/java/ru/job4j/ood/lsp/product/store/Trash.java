@@ -1,7 +1,7 @@
-package ru.job4j.ood.lsp.store;
+package ru.job4j.ood.lsp.product.store;
 
-import ru.job4j.ood.lsp.model.Food;
-import ru.job4j.ood.lsp.util.ExpirationCalculator;
+import ru.job4j.ood.lsp.product.model.Food;
+import ru.job4j.ood.lsp.product.util.ExpirationCalculator;
 
 import java.time.LocalDateTime;
 

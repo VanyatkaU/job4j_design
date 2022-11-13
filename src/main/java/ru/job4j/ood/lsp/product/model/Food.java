@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp.productStore.model;
+package ru.job4j.ood.lsp.product.model;
 
 import java.time.LocalDateTime;
 
