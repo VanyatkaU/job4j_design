@@ -10,4 +10,6 @@ public interface Store {
 
     List<Food> getAllFood();
 
+    void clean();
+
 }

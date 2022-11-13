@@ -24,6 +24,11 @@ public abstract class AbstractStore implements Store {
         return List.copyOf(foods);
     }
 
+    @Override
+    public void clean() {
+        foods.clear();
+    }
+
     protected abstract boolean isNotExpired(Food food);
 
 }
