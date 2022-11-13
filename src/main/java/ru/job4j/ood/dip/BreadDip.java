@@ -9,4 +9,3 @@ public class BreadDip extends Food {
         super(name, expiryDate, createDate, price, discount);
     }
 }
-
