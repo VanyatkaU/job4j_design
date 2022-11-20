@@ -9,27 +9,23 @@ public class SimpleMenu implements Menu {
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
 
-        boolean rsl = false;
-
         if (findItem(childName).isPresent()) {
-            rsl = false;
-        } else if (Objects.equals(parentName, ROOT)) {
-            rootElements.add(new SimpleMenuItem(childName, actionDelegate));
-            rsl = true;
-        } else {
-            Optional<ItemInfo> info = findItem(parentName);
-            if (info.isPresent()) {
-                info.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
-                rsl = true;
-            }
+            return false;
         }
-        return rsl;
+
+        if (Objects.equals(parentName, ROOT)) {
+            return rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+        }
+
+        Optional<ItemInfo> info = findItem(parentName);
+        return info.map(itemInfo -> itemInfo.menuItem.getChildren()
+                .add(new SimpleMenuItem(childName, actionDelegate))).orElse(false);
     }
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
         return findItem(itemName).map(i ->
-                        new MenuItemInfo(i.menuItem, i.number));
+                new MenuItemInfo(i.menuItem, i.number));
     }
 
     @Override
@@ -58,6 +54,7 @@ public class SimpleMenu implements Menu {
             ItemInfo itemInfo = dfsIterator.next();
             if (name.equals(itemInfo.menuItem.getName())) {
                 rsl = Optional.of(itemInfo);
+                break;
             }
         }
         return rsl;
@@ -65,9 +62,9 @@ public class SimpleMenu implements Menu {
 
     private static class SimpleMenuItem implements MenuItem {
 
-        private String name;
-        private List<MenuItem> children = new ArrayList<>();
-        private ActionDelegate actionDelegate;
+        private final String name;
+        private final List<MenuItem> children = new ArrayList<>();
+        private final ActionDelegate actionDelegate;
 
         public SimpleMenuItem(String name, ActionDelegate actionDelegate) {
             this.name = name;
@@ -127,7 +124,7 @@ public class SimpleMenu implements Menu {
 
     }
 
-    private class ItemInfo {
+    private static class ItemInfo {
 
         MenuItem menuItem;
         String number;
