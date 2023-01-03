@@ -25,7 +25,7 @@ insert into orders(amount, customer_id)
 values(21000, 1);
 insert into orders(amount, customer_id) 
 values(2001200, 2);
-insert into orders(amount, customer_id)) 
+insert into orders(amount, customer_id)
 values(1650, 3);
 
 select first_name,
@@ -34,3 +34,9 @@ from customers
 where id not in (select customer_id 
                  from orders
                 where amount > 0);
+
+select first_name,
+    last_name
+from customers
+where age = (select min(age)
+             from customers);
