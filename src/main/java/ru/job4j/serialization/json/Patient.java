@@ -70,7 +70,8 @@ public class Patient {
 
     public static void main(String[] args) throws JAXBException {
 
-        final Patient patient = new Patient(false, 35, "Ivan", new Contact("11-111"), "hemoglobin", "red blood cells", "platelets", "leukocytes");
+        final Patient patient = new Patient(false, 35, "Ivan", new Contact("11-111"),
+                "hemoglobin", "red blood cells", "platelets", "leukocytes");
 
         JAXBContext context = JAXBContext.newInstance(Patient.class);
         Marshaller marshaller = context.createMarshaller();
